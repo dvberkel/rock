@@ -10,7 +10,9 @@ Gem::Specification.new do |gem|
   gem.email         = "daan.v.berkel.1980@gmail.com"
   gem.homepage      = "https://github.com/dvberkel/rock"
 
+  gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "travis-lint"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
