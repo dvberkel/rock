@@ -1,6 +1,8 @@
 Tantrix Rock
 ============
 
+[![Build Status](https://secure.travis-ci.org/dvberkel/rock.png?branch=master)](http://travis-ci.org/dvberkel/rock)
+
 [Tantrix Rock][1] is a puzzle game inspired by the famous [Tantrix][2]
 puzzle. The object of the puzzle is to place hexagonal and square
 tiles on a truncated [octohedron][3] such that the colored lines all
@@ -31,6 +33,16 @@ dependencies needed for the project
 
     $ bundle install
 
+Running tests
+-------------
+
+[Rake][8] is used to automate the test run. You run all tests by
+executing the following command
+
+    $ bundle exec rake
+
+This is the same command that is used by [Travis CI][9].
+
 [1]: http://www.jaapsch.net/puzzles/tantrix.htm#rock "Tantrix Rock on Jaap's Puzzle page" 
 [2]: http://en.wikipedia.org/wiki/Tantrix "Wikipedia on Tantrix"
 [3]: http://en.wikipedia.org/wiki/Truncated_octahedron "Wikipedia on Truncated Octohedron"
@@ -38,4 +50,6 @@ dependencies needed for the project
 [5]: https://rvm.io/ "Homepage for the Ruby Version Manager"
 [6]: https://rvm.io/gemsets/ "rvm documentation about gemsets"
 [7]: http://gembundler.com/ "Bundler homepage"
+[8]: http://rake.rubyforge.org/ "Rake Homepage"
+[9]: http://travis-ci.org/ "Travis CI landing page"
 
