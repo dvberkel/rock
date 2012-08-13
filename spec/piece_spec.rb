@@ -11,5 +11,12 @@ describe "A Piece" do
     piece = Piece.new(:red, :blue, :red, :blue)
 
     piece.should_not eq(Piece.new(:blue, :red, :blue))
+    piece.should_not eq(Piece.new(:blue, :red, :blue, :red, :yellow))
+  end
+
+  it "should be different from a piece with different sides" do
+    piece = Piece.new(:red, :blue, :red, :blue)
+
+    piece.should_not eq(Piece.new(:blue, :yellow, :blue, :yellow))
   end
 end
