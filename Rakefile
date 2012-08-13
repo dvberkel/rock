@@ -14,6 +14,6 @@ end
 
 desc "Run rspec on the spec directory"
 RSpec::Core::RakeTask.new('rspec') do |t|
-  t.rspec_opts = ['-I lib']
+  t.rspec_opts = ['-I lib', '-I lib/rock']
   t.pattern = 'spec/**/*_spec.rb'
 end
