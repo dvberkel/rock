@@ -29,3 +29,15 @@ describe "A Bag" do
     pieces.should include(piece)
   end
 end
+
+describe "A MarkTree" do
+  it "should be able to add a piece" do
+    tree = MarkTree.new()
+    piece = Piece.new(:red, :blue, :red, :blue)
+    tree.add(piece)
+
+    pieces = tree.collect {|piece| piece}
+
+    pieces.should include(piece)
+  end
+end

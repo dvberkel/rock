@@ -18,3 +18,19 @@ class Bag
     @pieces.keys
   end
 end
+
+class MarkTree
+  include Enumerable
+
+  def initialize()
+    @pieces = []
+  end
+
+  def add(piece)
+    @pieces << piece
+  end
+
+  def each
+    @pieces.each {|piece| yield piece}
+  end
+end
