@@ -6,13 +6,36 @@ class Piece
 
   def ==(a_piece)
     if self.sides.size() == a_piece.sides.size() then
-      sides.each_with_index do |mark, index|
-        if !(mark == a_piece.sides[index]) then
-          return false
+      result = false
+      Rotations.of(sides).each do |candidate|
+        partial_result = true
+        candidate.each_with_index do |mark, index|
+          partial_result = partial_result && mark == a_piece.sides[index]
         end
-        return true
+        result = result || partial_result
       end
+      return result
     end
-    false
+    return false
+  end
+end
+
+class Rotations
+  include Enumerable
+
+  def self.of(target)
+    Rotations.new(target)
+  end
+
+  def initialize(target)
+    @target = target
+  end
+
+  def each
+    current = @target
+    (0 ... current.size).each do
+      yield current
+      current = current.rotate
+    end
   end
 end
