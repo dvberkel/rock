@@ -18,7 +18,7 @@ describe "A Bag" do
     bag.size.should eq(1)
   end
 
-  it "should be able piece of a certain color" do
+  it "should be able find piece of a certain color" do
     bag = Bag.new()
     piece = Piece.new(:red, :blue, :blue, :red)
     bag.insert(piece)
@@ -27,6 +27,17 @@ describe "A Bag" do
     pieces = bag.pieces_like(:blue).collect {|piece| piece}
 
     pieces.should include(piece)
+  end
+
+  it "should be able to take a certain piece" do
+    bag = Bag.new()
+    piece = Piece.new(:red, :blue, :blue, :red)
+    bag.insert(piece)
+
+    bag.take(piece)
+    pieces = bag.pieces_like(:blue).collect {|piece| piece}
+
+    pieces.size.should eq(0)
   end
 end
 

@@ -12,6 +12,12 @@ class Bag
     @pieces[piece] += 1
   end
 
+  def take(piece)
+    if (@pieces.has_key?(piece) && @pieces[piece] > 0) then
+      @pieces[piece] -= 1
+    end
+  end
+
   def size()
     @pieces.size
   end
