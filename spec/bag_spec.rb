@@ -49,7 +49,7 @@ describe "A MarkTree" do
     expected.each {|piece| tree.add(piece)}
     tree.add(Piece.new(:yellow, :yellow, :red, :red))
 
-    pieces = tree.select(:blue).collect {|piece| piece}
+    pieces = tree.pick(:blue).collect {|piece| piece}
     
     expected.each do |expected_piece|
       pieces.should include(expected_piece)
@@ -62,7 +62,7 @@ describe "A MarkTree" do
     expected.each {|piece| tree.add(piece)}
     tree.add(Piece.new(:yellow, :yellow, :red, :red))
 
-    pieces = tree.select(:blue, :red).collect {|piece| piece}
+    pieces = tree.pick(:blue, :red).collect {|piece| piece}
     
     expected.slice(0, 1).each do |expected_piece|
       pieces.should include(expected_piece)

@@ -1,13 +1,13 @@
-require "set"
-
 class Bag
   def initialize()
+    @tree = MarkTree.new()
     @pieces = {}
   end
 
   def insert(piece)
     if !(@pieces.has_key?(piece)) then
       @pieces[piece] = 0
+      @tree.add(piece)
     end
     @pieces[piece] += 1
   end
@@ -17,7 +17,7 @@ class Bag
   end
 
   def pieces_like(*marks)
-    @pieces.keys
+    @tree.pick(marks).select {|piece| @pieces[piece] > 0}
   end
 end
 
@@ -25,7 +25,7 @@ class MarkTree
   include Enumerable
 
   def initialize()
-    @pieces = Set.new
+    @pieces = []
     @sub_trees = {}
   end
 
@@ -37,7 +37,9 @@ class MarkTree
 
   def branch_of(trail, piece)
     if (trail.empty?) then
-      @pieces << piece
+      if !(@pieces.include?(piece)) then
+        @pieces << piece
+      end
     else
       head = trail[0]
       if !(@sub_trees.has_key?(head)) then
@@ -47,7 +49,7 @@ class MarkTree
     end
   end
 
-  def select(*trail)
+  def pick(*trail)
     trail.flatten!
     if (trail.empty?) then
       return self
@@ -56,7 +58,7 @@ class MarkTree
       if !(@sub_trees.has_key?(head)) then
         @sub_trees[head] = MarkTree.new()
       end
-      return @sub_trees[head].select(trail.slice(1,trail.size))
+      return @sub_trees[head].pick(trail.slice(1,trail.size))
     end
   end
 
