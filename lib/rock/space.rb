@@ -32,7 +32,16 @@ class Space
   end
 
   def feasible?()
+    @connections.each do |side, connection|
+      if (mark_on(side) != connection.target.mark_on(connection.via)) then
+        return false
+      end
+    end
     true
+  end
+
+  def mark_on(side)
+    @piece.mark(@sides.index(side))
   end
 end
 

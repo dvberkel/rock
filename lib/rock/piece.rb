@@ -8,6 +8,10 @@ class Piece
     @sides.size
   end
 
+  def mark(index)
+    @sides[index]
+  end
+
   def ==(a_piece)
     if self.sides.size() == a_piece.sides.size() then
       result = false

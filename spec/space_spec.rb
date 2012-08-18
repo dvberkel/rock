@@ -13,6 +13,17 @@ describe "A Space" do
     origin.feasible?.should eq(true)
   end
 
+  it "should determine infeasabillity of solution" do
+    origin = Space.new(:a, :b)
+    space = Space.new(:c, :d)
+    origin.from(:a).to(space).via(:c)
+    
+    origin.place(Piece.new(:red, :blue))
+    space.place(Piece.new(:blue, :red))
+
+    origin.feasible?.should eq(false)
+  end
+
   it "should only accept pieces of correct size" do
     expect { Space.new(:a, :b, :c).place(Piece.new(:red, :blue))}.to raise_error
     expect { Space.new(:a, :b).place(Piece.new(:red, :blue, :yellow))}.to raise_error
