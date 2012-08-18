@@ -4,6 +4,10 @@ class Piece
     @sides = sides
   end
 
+  def size()
+    @sides.size
+  end
+
   def ==(a_piece)
     if self.sides.size() == a_piece.sides.size() then
       result = false
