@@ -25,7 +25,7 @@ class MarkTree
   include Enumerable
 
   def initialize()
-    @pieces = Set.new()
+    @pieces = Set.new
     @sub_trees = {}
   end
 
@@ -44,6 +44,19 @@ class MarkTree
         @sub_trees[head] = MarkTree.new()
       end
       @sub_trees[head].branch_of(trail.slice(1,trail.size), piece)
+    end
+  end
+
+  def select(*trail)
+    trail.flatten!
+    if (trail.empty?) then
+      return self
+    else
+      head = trail[0]
+      if !(@sub_trees.has_key?(head)) then
+        @sub_trees[head] = MarkTree.new()
+      end
+      return @sub_trees[head].select(trail.slice(1,trail.size))
     end
   end
 

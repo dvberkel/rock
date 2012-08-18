@@ -32,12 +32,41 @@ end
 
 describe "A MarkTree" do
   it "should be able to add a piece" do
+    expected =  [Piece.new(:red, :blue, :red, :blue)]
     tree = MarkTree.new()
-    piece = Piece.new(:red, :blue, :red, :blue)
-    tree.add(piece)
+    expected.each {|piece| tree.add(piece)}
 
     pieces = tree.collect {|piece| piece}
-
-    pieces.should include(piece)
+    
+    expected.each do |expected_piece|
+      pieces.should include(expected_piece)
+    end
   end
+
+  it "should be able to retrieve a piece" do
+    expected =  [Piece.new(:red, :blue, :red, :blue), Piece.new(:yellow, :yellow, :blue, :blue)]
+    tree = MarkTree.new()
+    expected.each {|piece| tree.add(piece)}
+    tree.add(Piece.new(:yellow, :yellow, :red, :red))
+
+    pieces = tree.select(:blue).collect {|piece| piece}
+    
+    expected.each do |expected_piece|
+      pieces.should include(expected_piece)
+    end
+  end
+
+  it "should be able to retrieve a more specific piece" do
+    expected =  [Piece.new(:red, :blue, :red, :blue), Piece.new(:yellow, :yellow, :blue, :blue)]
+    tree = MarkTree.new()
+    expected.each {|piece| tree.add(piece)}
+    tree.add(Piece.new(:yellow, :yellow, :red, :red))
+
+    pieces = tree.select(:blue, :red).collect {|piece| piece}
+    
+    expected.slice(0, 1).each do |expected_piece|
+      pieces.should include(expected_piece)
+    end
+  end
+
 end
